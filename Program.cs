@@ -17,8 +17,14 @@ namespace Lekcia6_Cvicenie
             int[] obratenePole = obratitPole(pole1);
             Console.WriteLine("Nové pole obrátené: [" + string.Join(", ", obratenePole) + "]");
 
-            int[] odstraneniePrvehoPrvku = odstraniePrvehoPrvku(pole1, 2);
-            Console.WriteLine("Nové pole obrátené: [" + string.Join(", ", odstraneniePrvehoPrvku) + "]");
+            int[] odstraneniePrvehoElementu = odstraneniePrvehoPrvku(pole1);
+            Console.WriteLine("Nové pole odstánený prvý element: [" + string.Join(", ", odstraneniePrvehoElementu) + "]");
+            
+            int[] odstraneniePoslednehoElementu = odstraneniePoslednehoPrvku(pole1);
+            Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstraneniePoslednehoElementu) + "]");
+
+            int[] odstranenieZadanehoElementu = odstranenieZadanehoPrvku(pole1,2);
+            Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstranenieZadanehoElementu) + "]");
         }
 
         public static int[] ZoradeniePola(int[] pole)
@@ -64,7 +70,43 @@ namespace Lekcia6_Cvicenie
             return obratenePole;
         }
 
-        public static int[] odstraniePrvehoPrvku(int[] pole, int index)
+        public static int[] odstraneniePrvehoPrvku(int[] pole)
+        {
+            if (pole == null || pole.Length == 0)
+            {
+                Console.WriteLine("Zadal si neplatné hodnoty");
+                return new int[0];
+            }
+            int dlzkaPola = pole.Length;
+            int[] novePole = new int[pole.Length - 1];
+            int indexNovePole = 0;
+            for (int i = 1; i < dlzkaPola; i++)
+            {
+                novePole[indexNovePole] = pole[i];
+                indexNovePole++;
+            }
+                return novePole;
+        }
+
+        public static int[] odstraneniePoslednehoPrvku(int[] pole)
+        {
+            if (pole == null || pole.Length == 0)
+            {
+                Console.WriteLine("Zadal si neplatné hodnoty");
+                return new int[0];
+            }
+            int dlzkaPola = pole.Length;
+            int[] novePole = new int[pole.Length - 1];
+            int indexNovePole = 0;
+            for (int i = 0; i < dlzkaPola-1; i++)
+            {
+                novePole[indexNovePole] = pole[i];
+                indexNovePole++;
+            }
+            return novePole;
+        }
+
+        public static int[] odstranenieZadanehoPrvku(int[] pole, int index)
         {
             if (pole == null || pole.Length == 0)
             {
@@ -87,7 +129,7 @@ namespace Lekcia6_Cvicenie
                     indexNovePole++;
                 }
             }
-                return novePole;
+            return novePole;
         }
     }
 }
