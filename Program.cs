@@ -6,10 +6,10 @@ namespace Lekcia6_Cvicenie
     {
         static void Main(string[] args)
         {
-            int[] pole1 = [5, 3, 1, 2, 4];
+            int[] pole12 = [5, 3, 1, 2, 4];
 
-            int[] pole1x = null;
-            Console.WriteLine("Pôvodné pole: [" + string.Join(", ", pole1) + "]");
+            int[] pole1 = null;
+            //Console.WriteLine("Pôvodné pole: [" + string.Join(", ", pole1) + "]");
 
             int[] zoradenePole = ZoradeniePola(pole1);
             Console.WriteLine("Nové pole zoradené: [" + string.Join(", ", zoradenePole) + "]");
@@ -25,6 +25,16 @@ namespace Lekcia6_Cvicenie
 
             int[] odstranenieZadanehoElementu = odstranenieZadanehoPrvku(pole1,2);
             Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstranenieZadanehoElementu) + "]");
+
+            int[] novyPrvokNaZaciatku = PriradeniePrvkuNaZaciatok(pole1);
+            Console.WriteLine("Nové pole pridaný nový element na začiatku: [" + string.Join(", ", novyPrvokNaZaciatku) + "]");
+            
+            int[] novyPrvokNaKonci = PriradeniePrvkuNaKoniec(pole1);
+            Console.WriteLine("Nové pole pridaný nový element na koniec: [" + string.Join(", ", novyPrvokNaKonci) + "]");            
+            
+            int[] novyPrvokLubovolne = PriradeniePrvkuNaLubovolne(pole1,2);
+            Console.WriteLine("Nové pole pridaný nový element na ľubovolnú pozíciu: [" + string.Join(", ", novyPrvokLubovolne) + "]");
+
         }
 
         public static int[] ZoradeniePola(int[] pole)
@@ -41,10 +51,8 @@ namespace Lekcia6_Cvicenie
             {
                 for (int j = 0; j < dlzkaPola - i - 1; j++)
                 {
-                    // Porovnanie susedných prvkov
                     if (zoradenePole[j] > zoradenePole[j + 1])
                     {
-                        // Vymenenie prvkov, ak sú v zlom poradí
                         int vymenaPrvkov = zoradenePole[j];
                         zoradenePole[j] = zoradenePole[j + 1];
                         zoradenePole[j + 1] = vymenaPrvkov;
@@ -58,13 +66,12 @@ namespace Lekcia6_Cvicenie
             if (pole == null || pole.Length == 0)
             {
                 Console.WriteLine("Zadal si neplatné hodnoty");
-                return new int[0];
+                return new int [0];
             }
             int dlzkaPola = pole.Length;
             int[] obratenePole = new int[dlzkaPola];
             for (int i = 0;i < dlzkaPola; i++)
             {
-                // Výmena prvkov prvý sa vymení s posledným
                 obratenePole[i] = pole[dlzkaPola - i - 1];
             }
             return obratenePole;
@@ -127,6 +134,75 @@ namespace Lekcia6_Cvicenie
                 {
                     novePole[indexNovePole] = pole[i];
                     indexNovePole++;
+                }
+            }
+            return novePole;
+        }
+
+        public static int[] PriradeniePrvkuNaZaciatok(int[] pole)
+        {
+            if (pole == null || pole.Length == 0)
+            {
+                Console.WriteLine("Pole je null alebo je prázne");
+                return new int[] { 0 };
+            }
+
+            int dlzkaPola = pole.Length;
+            int[] novePole = new int[pole.Length + 1];
+            novePole[0] = 0;
+            for (int i = 1, j = 0; i < novePole.Length; i++)
+            {
+
+                novePole[i] = pole[j];
+                j++;
+
+            }
+            return novePole;
+        }
+
+        public static int[] PriradeniePrvkuNaKoniec(int[] pole)
+        {
+            if (pole == null || pole.Length == 0)
+            {
+                Console.WriteLine("Pole je null alebo je prázne");
+                return new int[] { 0 };
+            }
+
+            int dlzkaPola = pole.Length;
+            int[] novePole = new int[pole.Length + 1];
+            novePole[dlzkaPola] = 0;
+            for (int i = 0, j = 0; i < dlzkaPola; i++)
+            {
+                novePole[i] = pole[j];
+                j++;
+            }
+            return novePole;
+        }
+
+        public static int[] PriradeniePrvkuNaLubovolne(int[] pole, int index)
+        {
+            if (pole == null || pole.Length == 0)
+            {
+                Console.WriteLine("Pole je null alebo je prázne");
+                return new int[] { 0 };
+            }
+            else if (index < 0 || index >= pole.Length)
+            {
+                Console.WriteLine("Index je mimo rozsahu. Vraciam pôvodné pole");
+                return pole;
+            }
+            int dlzkaPola = pole.Length;
+            int[] novePole = new int[pole.Length + 1];
+            for (int i = 0, j = 0; i < novePole.Length; i++)
+            {
+                if (i == index)
+                {
+                    novePole[i] = 0;
+                }
+                else
+                {
+                    novePole[i] = pole[j];
+                    j++;
                 }
             }
             return novePole;
