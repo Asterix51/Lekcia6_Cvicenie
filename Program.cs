@@ -6,42 +6,55 @@ namespace Lekcia6_Cvicenie
     {
         static void Main(string[] args)
         {
-            int[] pole12 = [5, 3, 1, 2, 4];
+            int[] pole1 = [5, 3, 1, 2, 4];
 
-            int[] pole1 = null;
+            int[] pole1x = null;
+            kontrolaPolaAVypis(pole1, "Pôvodné pole je: ");
+
             //Console.WriteLine("Pôvodné pole: [" + string.Join(", ", pole1) + "]");
 
             int[] zoradenePole = ZoradeniePola(pole1);
-            Console.WriteLine("Nové pole zoradené: [" + string.Join(", ", zoradenePole) + "]");
+            kontrolaPolaAVypis(zoradenePole, "Zoradené pole je: ");
+            //Console.WriteLine("Nové pole zoradené: [" + string.Join(", ", zoradenePole) + "]");
 
             int[] obratenePole = obratitPole(pole1);
-            Console.WriteLine("Nové pole obrátené: [" + string.Join(", ", obratenePole) + "]");
+            kontrolaPolaAVypis(obratenePole, "Obrátené pole je: ");
+            //Console.WriteLine("Nové pole obrátené: [" + string.Join(", ", obratenePole) + "]");
 
             int[] odstraneniePrvehoElementu = odstraneniePrvehoPrvku(pole1);
-            Console.WriteLine("Nové pole odstánený prvý element: [" + string.Join(", ", odstraneniePrvehoElementu) + "]");
-            
+            kontrolaPolaAVypis(odstraneniePrvehoElementu, "Nové pole odstránený prvý element je: ");
+            //Console.WriteLine("Nové pole odstánený prvý element: [" + string.Join(", ", odstraneniePrvehoElementu) + "]");
+
             int[] odstraneniePoslednehoElementu = odstraneniePoslednehoPrvku(pole1);
-            Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstraneniePoslednehoElementu) + "]");
+            kontrolaPolaAVypis(odstraneniePoslednehoElementu, "Nové pole odstránený posledný element je: ");
+            //Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstraneniePoslednehoElementu) + "]");
 
             int[] odstranenieZadanehoElementu = odstranenieZadanehoPrvku(pole1,2);
-            Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstranenieZadanehoElementu) + "]");
+            kontrolaPolaAVypis(odstranenieZadanehoElementu, "Nové pole odstránený zadaný element je: ");
+            //Console.WriteLine("Nové pole odstránený posledný element: [" + string.Join(", ", odstranenieZadanehoElementu) + "]");
 
             int[] novyPrvokNaZaciatku = PriradeniePrvkuNaZaciatok(pole1);
-            Console.WriteLine("Nové pole pridaný nový element na začiatku: [" + string.Join(", ", novyPrvokNaZaciatku) + "]");
-            
+            kontrolaPolaAVypis(novyPrvokNaZaciatku, "Nové pole pridaný nový element na začiatku je: ");
+            //Console.WriteLine("Nové pole pridaný nový element na začiatku: [" + string.Join(", ", novyPrvokNaZaciatku) + "]");
+
             int[] novyPrvokNaKonci = PriradeniePrvkuNaKoniec(pole1);
-            Console.WriteLine("Nové pole pridaný nový element na koniec: [" + string.Join(", ", novyPrvokNaKonci) + "]");            
-            
+            kontrolaPolaAVypis(novyPrvokNaZaciatku, "Nové pole pridaný nový element na konci je: ");
+            //Console.WriteLine("Nové pole pridaný nový element na koniec: [" + string.Join(", ", novyPrvokNaKonci) + "]");            
+
             int[] novyPrvokLubovolne = PriradeniePrvkuNaLubovolne(pole1,2);
-            Console.WriteLine("Nové pole pridaný nový element na ľubovolnú pozíciu: [" + string.Join(", ", novyPrvokLubovolne) + "]");
+            kontrolaPolaAVypis(novyPrvokLubovolne, "Nové pole pridaný nový element na zadanú pozíciu je: ");
+            //Console.WriteLine("Nové pole pridaný nový element na ľubovolnú pozíciu: [" + string.Join(", ", novyPrvokLubovolne) + "]");
 
         }
 
         public static int[] ZoradeniePola(int[] pole)
         {
-            if (pole == null || pole.Length == 0)
+            if (pole == null)
             {
-                Console.WriteLine("Zadal si neplatné hodnoty");
+                return null;
+            }
+            else if (pole.Length == 0)
+            {
                 return new int[0];
             }
             int dlzkaPola = pole.Length;
@@ -63,10 +76,13 @@ namespace Lekcia6_Cvicenie
         }
         public static int[] obratitPole(int[] pole)
         {
-            if (pole == null || pole.Length == 0)
+            if (pole == null)
             {
-                Console.WriteLine("Zadal si neplatné hodnoty");
-                return new int [0];
+                return null;
+            }
+            else if (pole.Length == 0)
+            {
+                return new int[0];
             }
             int dlzkaPola = pole.Length;
             int[] obratenePole = new int[dlzkaPola];
@@ -79,9 +95,12 @@ namespace Lekcia6_Cvicenie
 
         public static int[] odstraneniePrvehoPrvku(int[] pole)
         {
-            if (pole == null || pole.Length == 0)
+            if (pole == null)
             {
-                Console.WriteLine("Zadal si neplatné hodnoty");
+                return null;
+            }
+            else if (pole.Length == 0)
+            {
                 return new int[0];
             }
             int dlzkaPola = pole.Length;
@@ -97,10 +116,13 @@ namespace Lekcia6_Cvicenie
 
         public static int[] odstraneniePoslednehoPrvku(int[] pole)
         {
-            if (pole == null || pole.Length == 0)
+            if (pole == null)
             {
-                Console.WriteLine("Zadal si neplatné hodnoty");
-                return new int[0];
+                return null;
+            }
+            else if (pole.Length == 0) 
+            { 
+            return new int[0];
             }
             int dlzkaPola = pole.Length;
             int[] novePole = new int[pole.Length - 1];
@@ -115,9 +137,12 @@ namespace Lekcia6_Cvicenie
 
         public static int[] odstranenieZadanehoPrvku(int[] pole, int index)
         {
-            if (pole == null || pole.Length == 0)
+            if (pole == null)
             {
-                Console.WriteLine("Zadal si neplatné hodnoty");
+                return null;
+            }
+            else if (pole.Length == 0)
+            {
                 return new int[0];
             }
             else if (index < 0 || index >= pole.Length)
@@ -143,7 +168,6 @@ namespace Lekcia6_Cvicenie
         {
             if (pole == null || pole.Length == 0)
             {
-                Console.WriteLine("Pole je null alebo je prázne");
                 return new int[] { 0 };
             }
 
@@ -164,7 +188,6 @@ namespace Lekcia6_Cvicenie
         {
             if (pole == null || pole.Length == 0)
             {
-                Console.WriteLine("Pole je null alebo je prázne");
                 return new int[] { 0 };
             }
 
@@ -183,7 +206,6 @@ namespace Lekcia6_Cvicenie
         {
             if (pole == null || pole.Length == 0)
             {
-                Console.WriteLine("Pole je null alebo je prázne");
                 return new int[] { 0 };
             }
             else if (index < 0 || index >= pole.Length)
@@ -207,5 +229,22 @@ namespace Lekcia6_Cvicenie
             }
             return novePole;
         }
+
+        public static void kontrolaPolaAVypis(int[] novePole, string text)
+        {
+            if (novePole == null)
+            {
+                Console.WriteLine(text + "null");
+            }
+            else if (novePole.Length == 0)
+            {
+                Console.WriteLine(text + "prázne: []" );
+            }
+            else 
+            {
+                Console.WriteLine( text + " [" + string.Join(", ", novePole) + "]");
+            }
+        }
+
     }
 }
